@@ -1,0 +1,18 @@
+# Manage MySQL global variables
+- name: Check for global variables
+- mysql_variables:
+    login_user: root
+    login_password: "{{ root_password }}"
+    login_port: "{{ login_port }}"
+    login_unix_socket: "{{ socket }}"
+    variable: "{{ variable }}"
+
+- name: Set global variables value
+- mysql_variables:
+    login_user: root
+    login_password: "{{ root_password }}"
+    login_port: "{{ login_port }}"
+    login_unix_socket: "{{ socket }}"
+    variable: "{{ variable }}"
+    value: "{{ value }}"
+  when: value is defined

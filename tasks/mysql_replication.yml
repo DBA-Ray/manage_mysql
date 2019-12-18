@@ -1,0 +1,14 @@
+# Manage MySQL replication
+- name: Config replication for master
+  mysql_replication:
+    login_port: "{{ login_port }}"
+    login_user: root
+    login_password: "{{ root_password }}"
+    login_unix_socket: "{{ socket }}"
+    mode: changemaster
+    master_host: "{{ master_host }}"
+    master_port: "{{ master_port }}"
+    master_user: "{{ master_user }}"
+    master_password: "{{ mysql_monitor_password }}"
+    master_auto_position: yes
+  when: ansible_hostname != "master"

@@ -1,2 +1,12 @@
 ---
 # tasks file for manage_mysql
+- include: password.yml
+
+- include: mysql_info.yml
+  when: gather_information | default(False)
+
+- include: mysql_variables.yml
+  when: manage_mysql_variables | default(False)
+
+- include: mysql_db.yml
+  when: dump_restore_db | default(False)

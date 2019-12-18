@@ -1,2 +1,16 @@
 ---
 # defaults file for manage_mysql
+# Allowable values are version, databases, settings, users, slave_status, slave_hosts, master_status, engines.
+# By default, collects all subsets.
+filter:
+  - settings
+variable: group_replication_transaction_size_limit
+value: 
+dbname: dxz # multiple db: db_1,db_2 all db: all
+dump_target: /tmp/dump.sql
+import_target: /tmp/dump.sql
+master_host: master
+master_port: 3377
+master_user: repl
+login_port: 3377
+socket: /tmp/mysql.sock
