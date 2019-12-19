@@ -1,2 +1,4 @@
 ---
 # vars file for manage_mysql
+vars_files:
+  - secrets.yml
