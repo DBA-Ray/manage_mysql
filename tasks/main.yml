@@ -10,3 +10,9 @@
 
 - include: mysql_db.yml
   when: dump_restore_db | default(False)
+
+- include: mysql_replication.yml
+  when: config_mysql_replication | default(False)
+
+- include: get_slave_status.yml
+  when: slave_status | default(False)

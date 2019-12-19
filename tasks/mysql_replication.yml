@@ -1,4 +1,20 @@
 # Manage MySQL replication
+- name: Stop slave for slaves
+  mysql_replication:
+    login_port: "{{ login_port }}"
+    login_user: root
+    login_password: "{{ root_password }}"
+    login_unix_socket: "{{ socket }}"
+    mode: stopslave
+
+- name: Reset slave all for slaves
+  mysql_replication:
+    login_port: "{{ login_port }}"
+    login_user: root
+    login_password: "{{ root_password }}"
+    login_unix_socket: "{{ socket }}"
+    mode: resetslaveall
+
 - name: Config replication for master
   mysql_replication:
     login_port: "{{ login_port }}"
@@ -11,4 +27,19 @@
     master_user: "{{ master_user }}"
     master_password: "{{ mysql_monitor_password }}"
     master_auto_position: yes
-  when: ansible_hostname != "master"
+
+- name: Start slave status for slaves
+  mysql_replication:
+    login_port: "{{ login_port }}"
+    login_user: root
+    login_password: "{{ root_password }}"
+    login_unix_socket: "{{ socket }}"
+    mode: startslave
+
+- name: Get slave status from slaves
+  mysql_replication:
+    login_port: "{{ login_port }}"
+    login_user: root
+    login_password: "{{ root_password }}"
+    login_unix_socket: "{{ socket }}"
+    mode: getslave

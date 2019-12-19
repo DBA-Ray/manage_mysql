@@ -1,0 +1,16 @@
+---
+- hosts: slave_monitor[1]
+  gather_facts: True
+  remote_user: root
+  vars:
+    dump_restore_db: True
+  roles:
+    - manage_mysql
+
+- hosts: mysql[2]
+  gather_facts: True
+  remote_user: root
+  vars:
+    dump_restore_db: True
+  roles:
+    - manage_mysql

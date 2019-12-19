@@ -1,0 +1,9 @@
+---
+- hosts: mgr:slave_monitor:mysql
+  gather_facts: True
+  remote_user: root
+  vars:
+    gather_information: True
+    manage_mysql_variables: True
+  roles:
+    - manage_mysql

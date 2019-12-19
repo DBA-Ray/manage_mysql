@@ -1,0 +1,7 @@
+- name: Get slave status from slaves
+  mysql_replication:
+    login_port: "{{ login_port }}"
+    login_user: root
+    login_password: "{{ root_password }}"
+    login_unix_socket: "{{ socket }}"
+    mode: getslave
