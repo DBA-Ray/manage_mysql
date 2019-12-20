@@ -3,12 +3,15 @@
 # Allowable values are version, databases, settings, users, slave_status, slave_hosts, master_status, engines.
 # By default, collects all subsets.
 filter:
-  - settings
+  - version
+  - databases
+schema: dxz # Specify which schema size to view
 variable: group_replication_transaction_size_limit
-value: 
-dbname: dxz # multiple db: db_1,db_2 all db: all
-dump_target: /tmp/dump.sql
-import_target: /tmp/dump.sql
+value: 0
+dump_dbname: canal_manager # multiple db: db_1,db_2 all db: all
+import_filename: canal_manager
+dump_target: /tmp/{{ dump_dbname }}.sql
+import_target: /tmp/{{ import_filename }}.sql
 master_host: master
 master_port: 3377
 master_user: repl

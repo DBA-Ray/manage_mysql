@@ -2,14 +2,19 @@
 # tasks file for manage_mysql
 - include: password.yml
 
+- include: system_check.yml 
+
 - include: mysql_info.yml
   when: gather_information | default(False)
 
 - include: mysql_variables.yml
   when: manage_mysql_variables | default(False)
 
-- include: mysql_db.yml
-  when: dump_restore_db | default(False)
+- include: mysql_dump.yml
+  when: dump_db | default(False)
+
+- include: mysql_restore.yml
+  when: restore_db | default(False)
 
 - include: mysql_replication.yml
   when: config_mysql_replication | default(False)
