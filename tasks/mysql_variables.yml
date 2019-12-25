@@ -21,4 +21,4 @@
     variable: "{{ item.variable }}"
     value: "{{ item.value | string }}"
   with_items: "{{ variable_value }}"
-  when: variable_value is defined
+  when: modify_variable_value

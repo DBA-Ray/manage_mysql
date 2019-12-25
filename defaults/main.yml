@@ -7,7 +7,7 @@ filter:
   - databases
 schema: dxz # Specify which schema size to view
 variable: group_replication_transaction_size_limit
-variable_value: 
+variable_value:
    - { variable: "{{ variable }}", value: '0' }
 #  - { variable: 'interactive_timeout', value: '600' }
 dump_dbname: canal_manager # multiple db: db_1,db_2 all db: all
