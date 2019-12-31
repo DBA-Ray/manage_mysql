@@ -12,14 +12,3 @@
     name: "{{ dump_dbname }}"
     target: "{{ dump_target }}"
   when: dump_target is defined
-
-- name: Restore database
-  mysql_db:
-    login_user: root
-    login_password: "{{ root_password }}"
-    login_port: "{{ login_port }}"
-    login_unix_socket: "{{ socket }}"
-    name: all
-    state: import
-    target: "{{ import_target }}"
-  when: import_target is defined

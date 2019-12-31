@@ -14,4 +14,3 @@
       - "Seconds_Behind_Master is: {{ status | json_query(\"Seconds_Behind_Master\") }}"
       - "Last_Error is: {{ status | json_query(\"Last_Error\") }}"
       - "Master_Host is: {{ status | json_query(\"Master_Host\") }}"
-
