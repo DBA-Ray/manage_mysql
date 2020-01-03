@@ -11,4 +11,3 @@
     single_transaction: yes
     name: "{{ dump_dbname }}"
     target: "{{ dump_target }}"
-  when: dump_target is defined

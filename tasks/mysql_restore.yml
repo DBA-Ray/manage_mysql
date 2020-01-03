@@ -7,4 +7,3 @@
     name: all
     state: import
     target: "{{ import_target }}"
-  when: import_target is defined
