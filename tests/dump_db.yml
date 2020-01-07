@@ -1,13 +1,5 @@
 ---
-- hosts: slave_monitor[0]
-  gather_facts: False
-  remote_user: root
-  vars:
-    dump_db: True
-  roles:
-    - dba_ray.manage_mysql
-
-- hosts: mysql[2]
+- hosts: mgr3
   gather_facts: False
   remote_user: root
   vars:
