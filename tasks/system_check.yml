@@ -13,4 +13,4 @@
   yum:
     name: "{{ packages }}"
     state: latest
-  run_once: True
+  run_once: False
