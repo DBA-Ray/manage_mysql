@@ -2,7 +2,7 @@
 # tasks file for manage_mysql
 - include: password.yml
 
-- include: system_check.yml 
+- include: system_check.yml
 
 - include: mysql_info.yml
   when: gather_information | default(False)
