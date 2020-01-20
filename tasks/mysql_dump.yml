@@ -2,6 +2,7 @@
 
 - name: Dump multiple databases
   mysql_db:
+    login_host: localhost
     login_user: root
     login_password: "{{ root_password }}"
     login_port: "{{ login_port }}"
