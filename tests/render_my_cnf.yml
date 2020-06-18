@@ -1,0 +1,6 @@
+---
+- hosts: mgr_pro1:slave_monitor:mysql
+  gather_facts: True
+  remote_user: root
+  roles:
+    - dba_ray.manage_mysql
