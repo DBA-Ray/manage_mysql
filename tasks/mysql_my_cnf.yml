@@ -1,7 +1,7 @@
 - name: Backing up the original my.cnf
   copy:
     src: "{{ etcdir }}/my.cnf"
-    dest: "{{ etcdir }}/my.cnf"
+    dest: "{{ etcdir }}/myback.cnf"
     owner: mysql
     group: mysql
     mode: 0644

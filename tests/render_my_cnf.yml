@@ -1,6 +1,10 @@
 ---
-- hosts: mgr_pro1:slave_monitor:mysql
+- hosts: slave_monitor
   gather_facts: True
   remote_user: root
+  vars:
+    read_only: 0 #for slave
+    group_replication_start_on_boot: off #for mgr
+    re_render_my_cnf: True
   roles:
     - dba_ray.manage_mysql
