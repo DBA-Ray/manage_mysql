@@ -26,7 +26,6 @@ basedir: "{{ install_dir }}/mysql"
 datadir: "{{ basedir }}/data"
 etcdir: "{{ basedir }}/etc"
 logdir: "{{ basedir }}/log"
-socket: /tmp/mysql.sock
 group_replication_group_name: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
 mysql_port: 3377
 max_connections: 2000
