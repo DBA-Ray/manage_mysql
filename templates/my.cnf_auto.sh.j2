@@ -50,7 +50,7 @@ auto_increment=`cat /etc/hosts | grep proxysql | awk 'END{print NR}'`
 
 sed -i 's/server_id = 1/server_id = '"${server_id}"'/' {{ etcdir }}/my.cnf
 
-sed -i 's/loose-group_replication_group_seeds = "172.21.0.4:33771,172.21.0.8:33771,172.21.0.28:33771"/loose-group_replication_group_seeds = '"${group_replication_group_seeds}"'/' {{ etcdir }}/my.cnf 
+sed -i 's/loose-group_replication_group_seeds = "172.21.0.4:33771,172.21.0.8:33771,172.21.0.28:33771"/loose-group_replication_group_seeds = '"${group_replication_group_seeds}"'/' {{ etcdir }}/my.cnf
 
 sed -i 's/innodb_thread_concurrency = 10/innodb_thread_concurrency = '"${innodb_thread_concurrency}"'/g' {{ etcdir }}/my.cnf
 
