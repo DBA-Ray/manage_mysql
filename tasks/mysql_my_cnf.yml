@@ -6,6 +6,7 @@
     group: mysql
     mode: 0644
     backup: yes
+    remote_src: yes
 
 - name: Rendering mysql parameter file
   template:
@@ -29,3 +30,9 @@
 
 - name: Auto config my.cnf
   shell: "sh -x {{ etcdir }}/my.cnf_auto.sh"
+
+- name: Remove my.cnf_auto.sh
+  file:
+    path: "{{ etcdir }}/my.cnf_auto.sh"
+    state: absent
+    remote_src: yes
