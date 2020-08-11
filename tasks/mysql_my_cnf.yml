@@ -36,3 +36,13 @@
     path: "{{ etcdir }}/my.cnf_auto.sh"
     state: absent
     remote_src: yes
+
+- name: Replace LimitNOFILE=42010
+  lineinfile:
+    dest: "/usr/lib/systemd/system/mysqld.service"
+    regexp: "^LimitNOFILE"
+    line: "LimitNOFILE = 42010"
+
+- name: Force systemd to reread configs
+  systemd:
+    daemon_reload: yes

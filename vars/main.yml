@@ -4,6 +4,7 @@ packages:
   - python2-PyMySQL.noarch
   - python36-PyMySQL.noarch
   - MySQL-python
+  - zstd
 
 vars_files:
   - secrets.yml
