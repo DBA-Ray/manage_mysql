@@ -9,9 +9,10 @@
   binlog_transaction_dependency_tracking = WRITESET
   binlog_checksum = NONE
   binlog_transaction_compression = ON
-  binlog_transaction_compression_level_zstd = 12
+  binlog_transaction_compression_level_zstd = 7 #（1-22）
   transaction_write_set_extraction = XXHASH64 #以便在server收集写集合的同时将其记录到二进制日志。写集合基于每行的主键，并且是行更改后的唯一标识此标识将用于检测冲突。
   sync_binlog = 1 #最安全，最多丢失一个事务，需要SSD磁盘，ext4格式
+  binlog_rows_query_log_events = 1
 
 # per_thread_buffers
   join_buffer_size = 256K #处理逻辑是驱动表的一行和非驱动表联合查找，这时就可以将非驱动表放入join_buffer，不需要访问拥有并发保护机制的buffer_pool
@@ -31,12 +32,11 @@
   default_authentication_plugin = mysql_native_password
   port = {{ mysql_port }}
   character_set_server = utf8mb4
-# collation_database = utf8mb4_general_ci
-  collation_server = utf8mb4_general_ci
-# default_collation_for_utf8mb4 = utf8mb4_general_ci
+  collation_server = utf8mb4_0900_ai_ci
   lower_case_table_names = 1
   auto_increment_offset = 1
   auto_increment_increment = 1
+  protocol_compression_algorithms = zstd
 
 # 日志时间戳改为系统
   log_timestamps = system
@@ -70,6 +70,8 @@
   loose-group_replication_autorejoin_tries = 3 #每次尝试自动连接间隔5分钟，在被驱逐出组或者到达group_replication_unreachable_majority_timeout的时间触发
   loose-group_replication_unreachable_majority_timeout = 3600 #节点由ONLINE状态进入UNREACHABLE状态后等待的时间,如果仍保持UNREACHABLE，则将节点置为ERROR状态
   loose-group_replication_compression_threshold = 131072 #大于128K的有效负载的事务被压缩，减少网络带宽的压力,必须小于2113929216 bytes（1.965G）的数据包
+  group_replication_recovery_compression_algorithms = zstd #压缩算法
+  group_replication_recovery_zstd_compression_level = 7 #压缩级别，越大压缩力越大，比较消耗CPU和内存资源（1-22）
   loose-group_replication_communication_max_message_size = 2097152 #压缩后的事务大于2M将对其分片，增加网络传输效率
 # semi replication
   rpl_semi_sync_master_timeout = 500
@@ -80,7 +82,7 @@
   clone_enable_compression = 1
 
 # 开启慢查询
-  long_query_time = 1
+  long_query_time = 0.5
   slow_query_log = 1
   slow_query_log_file = {{ logdir }}/slow.log
   log_slow_extra = 0
@@ -134,7 +136,7 @@
 # 安全加固
   user = mysql
   skip_name_resolve #生产环境中必须设置这个参数，否则反向解析缓慢时，会导致MySQL连接缓慢，出现严重的性能问题
-  local_infile=OFF
+  local_infile = 1 #使用loadDump函数必备
 
 # 超时时间
   wait_timeout = {{ timeout }}
