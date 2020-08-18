@@ -21,6 +21,3 @@
 
 - include: get_slave_status.yml
   when: slave_status | default(False)
-
-- include: mysql_my_cnf.yml
-  when: re_render_my_cnf | default(False)

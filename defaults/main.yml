@@ -19,20 +19,3 @@ master_port: 3377
 master_user: repl
 login_port: 3377
 socket: /tmp/mysql.sock
-# Rendering mysql parameter file
-install_dir: /var/local
-package_dir: "{{ install_dir }}/package"
-basedir: "{{ install_dir }}/mysql"
-datadir: "{{ basedir }}/data"
-etcdir: "{{ basedir }}/etc"
-logdir: "{{ basedir }}/log"
-group_replication_group_name: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
-mysql_port: 3377
-max_connections: 2000
-timeout: 3600
-tmp_size: 64M
-thread_cache_size: 400
-log_queries_not_using_indexes: 0
-min_examined_row_limit: 0
-mutli_primary: False
-single_primary: True
