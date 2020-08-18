@@ -1,8 +1,0 @@
----
-- hosts: localhost
-  gather_facts: False
-  remote_user: root
-  vars:
-    dump_db: True
-  roles:
-    - dba_ray.manage_mysql
