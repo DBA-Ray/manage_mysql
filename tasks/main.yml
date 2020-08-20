@@ -1,8 +1,10 @@
 ---
 # tasks file for manage_mysql
 - include: password.yml
+  tags: [present, show_slave, show_variables]
 
 - include: system_check.yml
+  tags: [check]
 
 - include: mysql_info.yml
   when: gather_information | default(False)

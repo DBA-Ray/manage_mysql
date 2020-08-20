@@ -10,11 +10,11 @@
   with_items: "{{ option_value }}"
   register: mysql_variable
   tags: present,show_variables
-
+  
 - name: Get MySQL variable for human read
   debug:
-    msg: "The {{ item.option | string }} of {{ ansible_hostname }} is: {{ mysql_variable | json_query(\"msg\") }}"
-  with_items: "{{ option_value }}"
+    msg: "The variable of {{ ansible_hostname }} is {{ item.msg }}"
+  with_items: "{{ mysql_variable.results }}"
   tags: present,show_variables
 
 - name: Set global variables value
@@ -26,7 +26,6 @@
     variable:  "{{ item.option | string }}"
     value: "{{ item.value | string }}"
   with_items: "{{ option_value }}"
-  when: modify_variable_value
   tags: present
 
 - name: Add or modify patameters for my.cnf
