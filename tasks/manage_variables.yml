@@ -1,0 +1,54 @@
+# Manage mysql my.cnf
+
+- name: Check for global variables
+  mysql_variables:
+    login_user: root
+    login_password: "{{ root_password }}"
+    login_port: "{{ login_port }}"
+    login_unix_socket: "{{ socket }}"
+    variable: "{{ item.option | string }}"
+  with_items: "{{ option_value }}"
+  register: mysql_variable
+  tags: present,show_variables
+
+- name: Get MySQL variable for human read
+  debug:
+    msg: "The {{ item.option | string }} of {{ ansible_hostname }} is: {{ mysql_variable | json_query(\"msg\") }}"
+  with_items: "{{ option_value }}"
+  tags: present,show_variables
+
+- name: Set global variables value
+  mysql_variables:
+    login_user: root
+    login_password: "{{ root_password }}"
+    login_port: "{{ login_port }}"
+    login_unix_socket: "{{ socket }}"
+    variable:  "{{ item.option | string }}"
+    value: "{{ item.value | string }}"
+  with_items: "{{ option_value }}"
+  when: modify_variable_value
+  tags: present
+
+- name: Add or modify patameters for my.cnf
+  ini_file:
+    path: "{{ etcdir }}"
+    section: mysqld
+    option: "{{ item.option | string }}"
+    value: "{{ item.value | string }}"
+    state: present
+    mode: '0644'
+    backup: yes
+  with_items: "{{ option_value }}"
+  tags: present
+
+- name: Delete patameters for my.cnf
+  ini_file:
+    path: "{{ etcdir }}"
+    section: mysqld
+    option: "{{ item.option | string }}"
+    value: "{{ item.value | string }}"
+    state: absent
+    mode: '0644'
+    backup: yes
+  with_items: "{{ option_value }}"
+  tags: absent

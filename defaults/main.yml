@@ -1,17 +1,21 @@
 ---
 # defaults file for manage_mysql
+# basic
+login_port: 3377
+socket: /tmp/mysql.sock
+# mysql_info.yml
 # Allowable values are version, databases, settings, users, slave_status, slave_hosts, master_status, engines.
 # By default, collects all subsets.
 filter:
   - version
   - databases
 schema: dxz # Specify which schema size to view
-variable: group_replication_transaction_size_limit
-variable_value:
-   - { variable: "{{ variable }}", value: '0' }
-#  - { variable: 'interactive_timeout', value: '600' }
+# manage_variables.yml
+etcdir: "/var/local/mysql/etc/my.cnf"
+option_value:
+  - { option: 'wait_timeout', value: '28800' }
+  - { option: 'interactive_timeout', value: '28800' }
+# manage_replication.yml
 master_host: master
 master_port: 3377
 master_user: repl
-login_port: 3377
-socket: /tmp/mysql.sock

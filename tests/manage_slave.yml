@@ -1,9 +1,10 @@
 ---
 - hosts: slave_monitor:mysql[1:2]
-  gather_facts: False
+  gather_facts: True
   remote_user: root
   vars:
-    config_mysql_replication: False
-    slave_status: True
+    manage_slave: True
   roles:
     - dba_ray.manage_mysql
+# tags:
+#    - show_slave only for view slave status

@@ -1,0 +1,13 @@
+---
+- hosts: mgr_pro1:slave_monitor:mysql
+  gather_facts: True
+  remote_user: root
+  vars:
+    gather_information: True
+    manage_mysql: True
+  roles:
+    - dba_ray.manage_mysql
+# tags:
+#    - present for add or modify parameters
+#    - absent for delete parameters
+#    - show_variables only for view mysql variables

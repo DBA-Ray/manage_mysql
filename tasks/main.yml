@@ -7,11 +7,8 @@
 - include: mysql_info.yml
   when: gather_information | default(False)
 
-- include: mysql_variables.yml
-  when: manage_mysql_variables | default(False)
+- include: manage_variables.yml
+  when: manage_mysql | default(False)
 
-- include: mysql_replication.yml
-  when: config_mysql_replication | default(False)
-
-- include: get_slave_status.yml
-  when: slave_status | default(False)
+- include: manage_replication.yml
+  when: manage_slave | default(False)
