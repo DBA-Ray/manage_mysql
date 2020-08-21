@@ -13,7 +13,7 @@
 
 - name: Get MySQL variable for human read
   debug:
-    msg: "The variable of {{ ansible_hostname }} is {{ item.msg }}"
+    msg: "The {{ item.item.option }} of {{ ansible_hostname }} is {{ item.msg }}"
   with_items: "{{ mysql_variable.results }}"
   tags: present,show_variables
 
