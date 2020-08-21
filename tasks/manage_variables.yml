@@ -10,7 +10,7 @@
   with_items: "{{ option_value }}"
   register: mysql_variable
   tags: present,show_variables
-  
+
 - name: Get MySQL variable for human read
   debug:
     msg: "The variable of {{ ansible_hostname }} is {{ item.msg }}"
