@@ -2,7 +2,7 @@
 # defaults file for manage_mysql
 # basic
 login_port: 3377
-socket: /tmp/mysql.sock
+socket: /data/mysql/data_{{ login_port }}/mysql.sock
 # mysql_info.yml
 # Allowable values are version, databases, settings, users, slave_status, slave_hosts, master_status, engines.
 # By default, collects all subsets.
@@ -11,7 +11,7 @@ filter:
   - databases
 schema: dxz # Specify which schema size to view
 # manage_variables.yml
-etcdir: "/var/local/mysql/etc/my.cnf"
+etcdir: "/data/mysql/etc/my_{{ login_port }}.cnf"
 option_value:
   - { option: 'wait_timeout', value: '28800' }
   - { option: 'interactive_timeout', value: '28800' }
